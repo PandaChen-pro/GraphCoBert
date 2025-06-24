@@ -1,0 +1,75 @@
+{
+  "os": "Linux-6.8.0-59-generic-x86_64-with-glibc2.17",
+  "python": "CPython 3.8.20",
+  "startedAt": "2025-06-23T09:52:44.749144Z",
+  "args": [
+    "--output_dir=saved_models",
+    "--config_name=microsoft/graphcodebert-base",
+    "--model_name_or_path=microsoft/graphcodebert-base",
+    "--tokenizer_name=microsoft/graphcodebert-base",
+    "--do_train",
+    "--train_data_file=dataset/train_small.txt",
+    "--eval_data_file=dataset/valid.txt",
+    "--test_data_file=dataset/test.txt",
+    "--epochs",
+    "1",
+    "--code_length",
+    "512",
+    "--data_flow_length",
+    "128",
+    "--train_batch_size",
+    "6",
+    "--eval_batch_size",
+    "6",
+    "--learning_rate",
+    "2e-5",
+    "--max_grad_norm",
+    "1.0",
+    "--evaluate_during_training",
+    "--seed",
+    "123456",
+    "--use_wandb",
+    "--wandb_project",
+    "graphcodebert-clonedetection",
+    "--wandb_run_name",
+    "train-1epoch-small-dataset"
+  ],
+  "program": "run.py",
+  "codePath": "run.py",
+  "git": {
+    "remote": "https://github.com/PandaChen-pro/GraphCoBert.git",
+    "commit": "c9693e6f9bde8d5ca9b8bc7f009d374a3e07ac93"
+  },
+  "email": "lqcfcjx@gmail.com",
+  "root": "/home/code/CodeBERT/GraphCodeBERT/clonedetection",
+  "host": "a0847c72e6f4",
+  "executable": "/home/Minconda3/envs/gcb/bin/python",
+  "codePathLocal": "run.py",
+  "cpu_count": 44,
+  "cpu_count_logical": 88,
+  "gpu": "NVIDIA GeForce GTX 1080",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "884720001024",
+      "used": "168108875776"
+    }
+  },
+  "memory": {
+    "total": "135037386752"
+  },
+  "cpu": {
+    "count": 44,
+    "countLogical": 88
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce GTX 1080",
+      "memoryTotal": "8589934592",
+      "cudaCores": 2560,
+      "architecture": "Pascal",
+      "uuid": "GPU-fffe2332-2627-270e-b3e6-449babc7f15b"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

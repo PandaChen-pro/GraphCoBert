@@ -1,0 +1,16 @@
+{"time":"2025-06-23T09:52:44.754830092Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/home/code/CodeBERT/GraphCodeBERT/clonedetection/wandb/run-20250623_095244-8s2udbm4/logs/debug-core.log"}
+{"time":"2025-06-23T09:52:45.452141205Z","level":"INFO","msg":"stream: created new stream","id":"8s2udbm4"}
+{"time":"2025-06-23T09:52:45.452221841Z","level":"INFO","msg":"stream: started","id":"8s2udbm4"}
+{"time":"2025-06-23T09:52:45.452252729Z","level":"INFO","msg":"writer: Do: started","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T09:52:45.452267756Z","level":"INFO","msg":"handler: started","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T09:52:45.452335106Z","level":"INFO","msg":"sender: started","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T09:52:45.786640364Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-23T10:28:46.543014534Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/8s2udbm4/file_stream\": EOF"}
+{"time":"2025-06-23T11:46:37.083286943Z","level":"INFO","msg":"stream: closing","id":"8s2udbm4"}
+{"time":"2025-06-23T11:46:37.083362978Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-23T11:46:37.083515064Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-23T11:46:39.465593949Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-23T11:46:40.262900038Z","level":"INFO","msg":"handler: closed","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T11:46:40.262982785Z","level":"INFO","msg":"writer: Close: closed","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T11:46:40.262995979Z","level":"INFO","msg":"sender: closed","stream_id":"8s2udbm4"}
+{"time":"2025-06-23T11:46:40.263099988Z","level":"INFO","msg":"stream: closed","id":"8s2udbm4"}

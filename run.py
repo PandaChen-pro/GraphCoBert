@@ -39,6 +39,7 @@ from transformers import (WEIGHTS_NAME, AdamW, get_linear_schedule_with_warmup,
 from tqdm import tqdm, trange
 import multiprocessing
 from model import Model
+import wandb
 import os
 os.environ['http_proxy']='http://127.0.0.1:7890'
 os.environ['https_proxy']='http://127.0.0.1:7890'
@@ -323,13 +324,33 @@ def set_seed(args):
 
 def train(args, train_dataset, model, tokenizer):
     """ Train the model """
-    
+
+    # Initialize wandb for training
+    if hasattr(args, 'use_wandb') and args.use_wandb:
+        wandb.init(
+            project=getattr(args, 'wandb_project', 'graphcodebert-clonedetection'),
+            name=getattr(args, 'wandb_run_name', f'train-{args.epochs}epochs'),
+            config={
+                'learning_rate': args.learning_rate,
+                'train_batch_size': args.train_batch_size,
+                'eval_batch_size': args.eval_batch_size,
+                'epochs': args.epochs,
+                'code_length': args.code_length,
+                'data_flow_length': args.data_flow_length,
+                'weight_decay': args.weight_decay,
+                'warmup_steps': args.warmup_steps,
+                'max_grad_norm': args.max_grad_norm,
+                'seed': args.seed,
+                'model_name': args.model_name_or_path,
+            }
+        )
+
     #build dataloader
     train_sampler = RandomSampler(train_dataset)
-    train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size,num_workers=4)
-    
+    train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size,num_workers=0)
+
     args.max_steps=args.epochs*len( train_dataloader)
-    args.save_steps=500  # Evaluate every 500 steps for testing phase
+    args.save_steps=5000  # Evaluate every 500 steps for testing phase
     args.warmup_steps=args.max_steps//5
     model.to(args.device)
     
@@ -398,31 +419,58 @@ def train(args, train_dataset, model, tokenizer):
                 
             avg_loss=round(train_loss/tr_num,5) if tr_num > 0 else 0.0
             bar.set_description("epoch {} loss {}".format(idx,avg_loss))
-              
+
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 optimizer.step()
                 optimizer.zero_grad()
-                scheduler.step()  
+                scheduler.step()
                 global_step += 1
                 output_flag=True
                 avg_loss=round((tr_loss - logging_loss) /(global_step- tr_nb),4) if (global_step- tr_nb) > 0 else 0.0
 
+                # Log training metrics to wandb
+                if hasattr(args, 'use_wandb') and args.use_wandb:
+                    wandb.log({
+                        'train/loss': avg_loss,
+                        'train/learning_rate': scheduler.get_last_lr()[0],
+                        'train/epoch': idx,
+                        'train/global_step': global_step,
+                    }, step=global_step)
+
                 if global_step % args.save_steps == 0:
-                    results = evaluate(args, model, tokenizer, eval_when_training=True)    
-                    
+                    results = evaluate(args, model, tokenizer, eval_when_training=True)
+
+                    # Log evaluation metrics to wandb
+                    if hasattr(args, 'use_wandb') and args.use_wandb:
+                        wandb.log({
+                            'eval/recall': results['eval_recall'],
+                            'eval/precision': results['eval_precision'],
+                            'eval/f1': results['eval_f1'],
+                            'eval/threshold': results['eval_threshold'],
+                        }, step=global_step)
+
                     # Save model checkpoint
                     if results['eval_f1']>best_f1:
                         best_f1=results['eval_f1']
-                        logger.info("  "+"*"*20)  
+                        logger.info("  "+"*"*20)
                         logger.info("  Best f1:%s",round(best_f1,4))
-                        logger.info("  "+"*"*20)                          
-                        
+                        logger.info("  "+"*"*20)
+
+                        # Log best model metrics to wandb
+                        if hasattr(args, 'use_wandb') and args.use_wandb:
+                            wandb.log({
+                                'best/f1': best_f1,
+                                'best/recall': results['eval_recall'],
+                                'best/precision': results['eval_precision'],
+                                'best/step': global_step,
+                            }, step=global_step)
+
                         checkpoint_prefix = 'checkpoint-best-f1'
-                        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))                        
+                        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))
                         if not os.path.exists(output_dir):
-                            os.makedirs(output_dir)                        
+                            os.makedirs(output_dir)
                         model_to_save = model.module if hasattr(model,'module') else model
-                        output_dir = os.path.join(output_dir, '{}'.format('model.bin')) 
+                        output_dir = os.path.join(output_dir, '{}'.format('model.bin'))
                         torch.save(model_to_save.state_dict(), output_dir)
                         logger.info("Saving model checkpoint to %s", output_dir)
                         
@@ -439,7 +487,7 @@ def evaluate(args, model, tokenizer, eval_when_training=False):
         logger.info("Using subset of %d samples for training-time evaluation", len(eval_dataset))
 
     eval_sampler = SequentialSampler(eval_dataset)
-    eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler,batch_size=args.eval_batch_size,num_workers=4)
+    eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler,batch_size=args.eval_batch_size,num_workers=0)
 
     # multi-gpu evaluate
     if args.n_gpu > 1 and eval_when_training is False:
@@ -488,12 +536,22 @@ def evaluate(args, model, tokenizer, eval_when_training=False):
         "eval_precision": float(precision),
         "eval_f1": float(f1),
         "eval_threshold":best_threshold,
-        
+        "eval_loss": eval_loss / nb_eval_steps if nb_eval_steps > 0 else 0.0,
     }
 
     logger.info("***** Eval results *****")
     for key in sorted(result.keys()):
         logger.info("  %s = %s", key, str(round(result[key],4)))
+
+    # Log evaluation results to wandb if not during training (final evaluation)
+    if not eval_when_training and hasattr(args, 'use_wandb') and args.use_wandb:
+        wandb.log({
+            'final_eval/recall': result['eval_recall'],
+            'final_eval/precision': result['eval_precision'],
+            'final_eval/f1': result['eval_f1'],
+            'final_eval/loss': result['eval_loss'],
+            'final_eval/threshold': result['eval_threshold'],
+        })
 
     return result
 
@@ -501,7 +559,7 @@ def test(args, model, tokenizer, best_threshold=0):
     #build dataloader
     eval_dataset = TextDataset(tokenizer, args, file_path=args.test_data_file)
     eval_sampler = SequentialSampler(eval_dataset)
-    eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size,num_workers=4)
+    eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size,num_workers=0)
 
     # multi-gpu evaluate
     if args.n_gpu > 1:
@@ -526,16 +584,50 @@ def test(args, model, tokenizer, best_threshold=0):
             logits.append(logit.cpu().numpy())
             y_trues.append(labels.cpu().numpy())
         nb_eval_steps += 1
-    
-    #output result
+
+    #calculate test metrics
     logits=np.concatenate(logits,0)
+    y_trues=np.concatenate(y_trues,0)
     y_preds=logits[:,1]>best_threshold
+
+    # Calculate test metrics
+    from sklearn.metrics import recall_score, precision_score, f1_score
+    test_recall = recall_score(y_trues, y_preds)
+    test_precision = precision_score(y_trues, y_preds)
+    test_f1 = f1_score(y_trues, y_preds)
+    test_loss = eval_loss / nb_eval_steps if nb_eval_steps > 0 else 0.0
+
+    # Log test results
+    logger.info("***** Test results *****")
+    logger.info("  Test Recall = %s", str(round(test_recall, 4)))
+    logger.info("  Test Precision = %s", str(round(test_precision, 4)))
+    logger.info("  Test F1 = %s", str(round(test_f1, 4)))
+    logger.info("  Test Loss = %s", str(round(test_loss, 4)))
+
+    # Log test metrics to wandb
+    if hasattr(args, 'use_wandb') and args.use_wandb:
+        wandb.log({
+            'test/recall': test_recall,
+            'test/precision': test_precision,
+            'test/f1': test_f1,
+            'test/loss': test_loss,
+            'test/threshold': best_threshold,
+        })
+
+    #output result
     with open(os.path.join(args.output_dir,"predictions.txt"),'w') as f:
         for example,pred in zip(eval_dataset.examples,y_preds):
             if pred:
                 f.write(example.url1+'\t'+example.url2+'\t'+'1'+'\n')
             else:
                 f.write(example.url1+'\t'+example.url2+'\t'+'0'+'\n')
+
+    return {
+        'test_recall': test_recall,
+        'test_precision': test_precision,
+        'test_f1': test_f1,
+        'test_loss': test_loss
+    }
                                                 
 def main():
     parser = argparse.ArgumentParser()
@@ -597,6 +689,14 @@ def main():
     parser.add_argument('--epochs', type=int, default=1,
                         help="training epochs")
 
+    # Wandb arguments
+    parser.add_argument('--use_wandb', action='store_true',
+                        help="Whether to use wandb for logging")
+    parser.add_argument('--wandb_project', type=str, default='graphcodebert-clonedetection',
+                        help="Wandb project name")
+    parser.add_argument('--wandb_run_name', type=str, default=None,
+                        help="Wandb run name")
+
     args = parser.parse_args()
 
     # Setup CUDA, GPU
@@ -627,18 +727,39 @@ def main():
     # Evaluation
     results = {}
     if args.do_eval:
+        # Initialize wandb for evaluation if not already initialized
+        if args.use_wandb and not wandb.run:
+            wandb.init(
+                project=args.wandb_project,
+                name=getattr(args, 'wandb_run_name', 'eval-only'),
+                config=vars(args)
+            )
+
         checkpoint_prefix = 'checkpoint-best-f1/model.bin'
-        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))  
+        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))
         model.load_state_dict(torch.load(output_dir))
         model.to(args.device)
-        result=evaluate(args, model, tokenizer)
-        
+        results = evaluate(args, model, tokenizer)
+
     if args.do_test:
+        # Initialize wandb for testing if not already initialized
+        if args.use_wandb and not wandb.run:
+            wandb.init(
+                project=args.wandb_project,
+                name=getattr(args, 'wandb_run_name', 'test-only'),
+                config=vars(args)
+            )
+
         checkpoint_prefix = 'checkpoint-best-f1/model.bin'
-        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))  
+        output_dir = os.path.join(args.output_dir, '{}'.format(checkpoint_prefix))
         model.load_state_dict(torch.load(output_dir))
         model.to(args.device)
-        test(args, model, tokenizer,best_threshold=0.5)
+        test_results = test(args, model, tokenizer, best_threshold=0.5)
+        results.update(test_results)
+
+    # Finish wandb run
+    if args.use_wandb and wandb.run:
+        wandb.finish()
 
     return results
 

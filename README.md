@@ -94,18 +94,22 @@ python run.py \
     --model_name_or_path=microsoft/graphcodebert-base \
     --tokenizer_name=microsoft/graphcodebert-base \
     --do_train \
-    --train_data_file=dataset/train.txt \
+    --train_data_file=dataset/train_small.txt \
     --eval_data_file=dataset/valid.txt \
     --test_data_file=dataset/test.txt \
     --epoch 1 \
     --code_length 512 \
     --data_flow_length 128 \
-    --train_batch_size 16 \
-    --eval_batch_size 32 \
+    --train_batch_size 8 \
+    --eval_batch_size 8 \
     --learning_rate 2e-5 \
     --max_grad_norm 1.0 \
     --evaluate_during_training \
     --seed 123456 2>&1| tee saved_models/train.log
+```
+
+```
+python run.py     --output_dir=output/     --model_name_or_path=microsoft/graphcodebert-base     --train_data_file=dataset/train.small.txt     --eval_data_file=dataset/valid.txt     --test_data_file=dataset/test.txt     --do_train     --epoch 1     --code_length 384     --data_flow_length 64     --train_batch_size 4     --eval_batch_size 8     --learning_rate 1e-5
 ```
 
 ### Inference
@@ -120,14 +124,14 @@ python run.py \
     --tokenizer_name=microsoft/graphcodebert-base \
     --do_eval \
     --do_test \
-    --train_data_file=dataset/train.txt \
+    --train_data_file=dataset/train_small.txt \
     --eval_data_file=dataset/valid.txt \
     --test_data_file=dataset/test.txt \
     --epoch 1 \
     --code_length 512 \
     --data_flow_length 128 \
-    --train_batch_size 16 \
-    --eval_batch_size 32 \
+    --train_batch_size 8 \
+    --eval_batch_size 8 \
     --learning_rate 2e-5 \
     --max_grad_norm 1.0 \
     --evaluate_during_training \

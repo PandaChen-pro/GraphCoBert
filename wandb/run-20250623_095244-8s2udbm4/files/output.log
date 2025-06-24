@@ -1,0 +1,64 @@
+/home/Minconda3/envs/gcb/lib/python3.8/site-packages/transformers/optimization.py:591: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+06/23/2025 09:52:46 - INFO - __main__ -   ***** Running training *****
+06/23/2025 09:52:46 - INFO - __main__ -     Num examples = 300000
+06/23/2025 09:52:46 - INFO - __main__ -     Num Epochs = 1
+06/23/2025 09:52:46 - INFO - __main__ -     Instantaneous batch size per GPU = 6
+06/23/2025 09:52:46 - INFO - __main__ -     Total train batch size = 6
+06/23/2025 09:52:46 - INFO - __main__ -     Gradient Accumulation steps = 1
+06/23/2025 09:52:46 - INFO - __main__ -     Total optimization steps = 50000
+epoch 0 loss 0.42355:  10%|▉         | 4999/50000 [1:53:38<17:02:54,  1.36s/it]06/23/2025 11:46:24 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4167.37it/s]
+06/23/2025 11:46:36 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/23/2025 11:46:36 - INFO - __main__ -   ***** Running evaluation *****
+06/23/2025 11:46:36 - INFO - __main__ -     Num examples = 5000
+06/23/2025 11:46:36 - INFO - __main__ -     Batch size = 6
+Evaluating:   0%|          | 0/834 [00:00<?, ?it/s]
+epoch 0 loss 0.42355:  10%|▉         | 4999/50000 [1:53:49<17:04:41,  1.37s/it]
+Traceback (most recent call last):
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1131, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/queues.py", line 116, in get
+    return _ForkingPickler.loads(res)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/multiprocessing/reductions.py", line 496, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/resource_sharer.py", line 87, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/connection.py", line 508, in Client
+    answer_challenge(c, authkey)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/connection.py", line 752, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/connection.py", line 414, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "run.py", line 768, in <module>
+    main()
+  File "run.py", line 725, in main
+    train(args, train_dataset, model, tokenizer)
+  File "run.py", line 441, in train
+    results = evaluate(args, model, tokenizer, eval_when_training=True)
+  File "run.py", line 506, in evaluate
+    for batch in tqdm(eval_dataloader, desc="Evaluating"):
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1327, in _next_data
+    idx, data = self._get_data()
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1293, in _get_data
+    success, data = self._try_get_data()
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1131, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/Minconda3/envs/gcb/lib/python3.8/site-packages/torch/utils/data/_utils/signal_handling.py", line 67, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 138252) is killed by signal: Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.
