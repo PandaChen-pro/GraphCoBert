@@ -24,4 +24,4 @@ Evaluating: 100%|██████████| 834/834 [06:28<00:00,  2.15it/s
 06/24/2025 12:37:17 - INFO - __main__ -     Best f1:0.8714
 06/24/2025 12:37:17 - INFO - __main__ -     ********************
 06/24/2025 12:37:17 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
-epoch 0 loss 0.33936:  14%|█▍        | 7056/50000 [2:47:21<16:15:10,  1.36s/it]   
+epoch 0 loss 0.3274:  15%|█▍        | 7463/50000 [2:56:36<16:06:00,  1.36s/it]    
