@@ -24,4 +24,137 @@ Evaluating: 100%|██████████| 834/834 [06:28<00:00,  2.15it/s
 06/24/2025 12:37:17 - INFO - __main__ -     Best f1:0.8714
 06/24/2025 12:37:17 - INFO - __main__ -     ********************
 06/24/2025 12:37:17 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
-epoch 0 loss 0.3274:  15%|█▍        | 7463/50000 [2:56:36<16:06:00,  1.36s/it]    
+epoch 0 loss 0.26997:  20%|█▉        | 9999/50000 [3:54:18<15:07:46,  1.36s/it]06/24/2025 14:31:02 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4497.08it/s]
+06/24/2025 14:31:12 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/24/2025 14:31:12 - INFO - __main__ -   ***** Running evaluation *****
+06/24/2025 14:31:12 - INFO - __main__ -     Num examples = 5000
+06/24/2025 14:31:12 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:26<00:00,  2.16it/s]
+06/24/2025 14:37:39 - INFO - __main__ -   ***** Eval results *****
+06/24/2025 14:37:39 - INFO - __main__ -     eval_f1 = 0.9136
+06/24/2025 14:37:39 - INFO - __main__ -     eval_loss = 0.1053
+06/24/2025 14:37:39 - INFO - __main__ -     eval_precision = 0.87
+06/24/2025 14:37:39 - INFO - __main__ -     eval_recall = 0.9618
+06/24/2025 14:37:39 - INFO - __main__ -     eval_threshold = 0.5
+06/24/2025 14:37:39 - INFO - __main__ -     ********************
+06/24/2025 14:37:39 - INFO - __main__ -     Best f1:0.9136
+06/24/2025 14:37:39 - INFO - __main__ -     ********************
+06/24/2025 14:37:44 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.20053:  30%|██▉       | 14999/50000 [5:54:51<13:17:36,  1.37s/it]06/24/2025 16:31:35 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4476.42it/s]
+06/24/2025 16:31:46 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/24/2025 16:31:46 - INFO - __main__ -   ***** Running evaluation *****
+06/24/2025 16:31:46 - INFO - __main__ -     Num examples = 5000
+06/24/2025 16:31:46 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:28<00:00,  2.15it/s]
+06/24/2025 16:38:15 - INFO - __main__ -   ***** Eval results *****
+06/24/2025 16:38:15 - INFO - __main__ -     eval_f1 = 0.9186
+06/24/2025 16:38:15 - INFO - __main__ -     eval_loss = 0.1355
+06/24/2025 16:38:15 - INFO - __main__ -     eval_precision = 0.8679
+06/24/2025 16:38:15 - INFO - __main__ -     eval_recall = 0.9755
+06/24/2025 16:38:15 - INFO - __main__ -     eval_threshold = 0.5
+06/24/2025 16:38:15 - INFO - __main__ -     ********************
+06/24/2025 16:38:15 - INFO - __main__ -     Best f1:0.9186
+06/24/2025 16:38:15 - INFO - __main__ -     ********************
+06/24/2025 16:38:20 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.16339:  40%|███▉      | 19999/50000 [7:55:22<11:23:54,  1.37s/it]06/24/2025 18:32:06 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4179.99it/s]
+06/24/2025 18:32:17 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/24/2025 18:32:17 - INFO - __main__ -   ***** Running evaluation *****
+06/24/2025 18:32:17 - INFO - __main__ -     Num examples = 5000
+06/24/2025 18:32:17 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:26<00:00,  2.16it/s]
+06/24/2025 18:38:44 - INFO - __main__ -   ***** Eval results *****
+06/24/2025 18:38:44 - INFO - __main__ -     eval_f1 = 0.9038
+06/24/2025 18:38:44 - INFO - __main__ -     eval_loss = 0.138
+06/24/2025 18:38:44 - INFO - __main__ -     eval_precision = 0.8408
+06/24/2025 18:38:44 - INFO - __main__ -     eval_recall = 0.9771
+06/24/2025 18:38:44 - INFO - __main__ -     eval_threshold = 0.5
+epoch 0 loss 0.13854:  50%|████▉     | 24999/50000 [9:55:34<9:27:24,  1.36s/it]06/24/2025 20:32:18 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4202.10it/s]
+06/24/2025 20:32:29 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/24/2025 20:32:29 - INFO - __main__ -   ***** Running evaluation *****
+06/24/2025 20:32:29 - INFO - __main__ -     Num examples = 5000
+06/24/2025 20:32:29 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:26<00:00,  2.16it/s]
+06/24/2025 20:38:55 - INFO - __main__ -   ***** Eval results *****
+06/24/2025 20:38:55 - INFO - __main__ -     eval_f1 = 0.928
+06/24/2025 20:38:55 - INFO - __main__ -     eval_loss = 0.1159
+06/24/2025 20:38:55 - INFO - __main__ -     eval_precision = 0.8955
+06/24/2025 20:38:55 - INFO - __main__ -     eval_recall = 0.963
+06/24/2025 20:38:55 - INFO - __main__ -     eval_threshold = 0.5
+06/24/2025 20:38:55 - INFO - __main__ -     ********************
+06/24/2025 20:38:55 - INFO - __main__ -     Best f1:0.928
+06/24/2025 20:38:55 - INFO - __main__ -     ********************
+06/24/2025 20:39:00 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.11971:  60%|█████▉    | 29999/50000 [11:55:43<7:33:23,  1.36s/it]06/24/2025 22:32:27 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4183.46it/s]
+06/24/2025 22:32:38 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/24/2025 22:32:38 - INFO - __main__ -   ***** Running evaluation *****
+06/24/2025 22:32:38 - INFO - __main__ -     Num examples = 5000
+06/24/2025 22:32:38 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:25<00:00,  2.17it/s]
+06/24/2025 22:39:03 - INFO - __main__ -   ***** Eval results *****
+06/24/2025 22:39:03 - INFO - __main__ -     eval_f1 = 0.9356
+06/24/2025 22:39:03 - INFO - __main__ -     eval_loss = 0.1046
+06/24/2025 22:39:03 - INFO - __main__ -     eval_precision = 0.908
+06/24/2025 22:39:03 - INFO - __main__ -     eval_recall = 0.965
+06/24/2025 22:39:03 - INFO - __main__ -     eval_threshold = 0.5
+06/24/2025 22:39:03 - INFO - __main__ -     ********************
+06/24/2025 22:39:03 - INFO - __main__ -     Best f1:0.9356
+06/24/2025 22:39:03 - INFO - __main__ -     ********************
+06/24/2025 22:39:09 - INFO - __main__ -   Saving model checkpoint to saved_models/checkpoint-best-f1/model.bin
+epoch 0 loss 0.10562:  70%|██████▉   | 34999/50000 [13:55:51<5:39:42,  1.36s/it]06/25/2025 00:32:35 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4220.63it/s]
+06/25/2025 00:32:46 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/25/2025 00:32:46 - INFO - __main__ -   ***** Running evaluation *****
+06/25/2025 00:32:46 - INFO - __main__ -     Num examples = 5000
+06/25/2025 00:32:46 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:25<00:00,  2.17it/s]
+06/25/2025 00:39:11 - INFO - __main__ -   ***** Eval results *****
+06/25/2025 00:39:11 - INFO - __main__ -     eval_f1 = 0.9342
+06/25/2025 00:39:11 - INFO - __main__ -     eval_loss = 0.1239
+06/25/2025 00:39:11 - INFO - __main__ -     eval_precision = 0.904
+06/25/2025 00:39:11 - INFO - __main__ -     eval_recall = 0.9663
+06/25/2025 00:39:11 - INFO - __main__ -     eval_threshold = 0.5
+epoch 0 loss 0.09467:  80%|███████▉  | 39999/50000 [15:56:09<3:47:11,  1.36s/it]06/25/2025 02:32:53 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4200.93it/s]
+06/25/2025 02:33:04 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/25/2025 02:33:04 - INFO - __main__ -   ***** Running evaluation *****
+06/25/2025 02:33:04 - INFO - __main__ -     Num examples = 5000
+06/25/2025 02:33:04 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:25<00:00,  2.17it/s]
+06/25/2025 02:39:29 - INFO - __main__ -   ***** Eval results *****
+06/25/2025 02:39:29 - INFO - __main__ -     eval_f1 = 0.9309
+06/25/2025 02:39:29 - INFO - __main__ -     eval_loss = 0.1271
+06/25/2025 02:39:29 - INFO - __main__ -     eval_precision = 0.8988
+06/25/2025 02:39:29 - INFO - __main__ -     eval_recall = 0.9654
+06/25/2025 02:39:29 - INFO - __main__ -     eval_threshold = 0.5
+epoch 0 loss 0.08551:  90%|████████▉ | 44999/50000 [17:56:14<1:53:24,  1.36s/it]06/25/2025 04:32:58 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4217.60it/s]
+06/25/2025 04:33:09 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/25/2025 04:33:09 - INFO - __main__ -   ***** Running evaluation *****
+06/25/2025 04:33:09 - INFO - __main__ -     Num examples = 5000
+06/25/2025 04:33:09 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:25<00:00,  2.16it/s]
+06/25/2025 04:39:34 - INFO - __main__ -   ***** Eval results *****
+06/25/2025 04:39:34 - INFO - __main__ -     eval_f1 = 0.9347
+06/25/2025 04:39:34 - INFO - __main__ -     eval_loss = 0.1046
+06/25/2025 04:39:34 - INFO - __main__ -     eval_precision = 0.9184
+06/25/2025 04:39:34 - INFO - __main__ -     eval_recall = 0.9515
+06/25/2025 04:39:34 - INFO - __main__ -     eval_threshold = 0.5
+epoch 0 loss 0.07783: 100%|█████████▉| 49999/50000 [19:56:26<00:01,  1.36s/it]06/25/2025 06:33:10 - INFO - __main__ -   Creating features from index file at dataset/valid.txt
+100%|██████████| 41541/41541 [00:09<00:00, 4318.07it/s]
+06/25/2025 06:33:21 - INFO - __main__ -   Using subset of 5000 samples for training-time evaluation
+06/25/2025 06:33:21 - INFO - __main__ -   ***** Running evaluation *****
+06/25/2025 06:33:21 - INFO - __main__ -     Num examples = 5000
+06/25/2025 06:33:21 - INFO - __main__ -     Batch size = 6
+Evaluating: 100%|██████████| 834/834 [06:24<00:00,  2.17it/s]
+06/25/2025 06:39:46 - INFO - __main__ -   ***** Eval results *****
+06/25/2025 06:39:46 - INFO - __main__ -     eval_f1 = 0.9355
+06/25/2025 06:39:46 - INFO - __main__ -     eval_loss = 0.1152
+06/25/2025 06:39:46 - INFO - __main__ -     eval_precision = 0.9333
+06/25/2025 06:39:46 - INFO - __main__ -     eval_recall = 0.9377
+06/25/2025 06:39:46 - INFO - __main__ -     eval_threshold = 0.5
+epoch 0 loss 0.07783: 100%|██████████| 50000/50000 [20:03:02<00:00,  1.44s/it] 

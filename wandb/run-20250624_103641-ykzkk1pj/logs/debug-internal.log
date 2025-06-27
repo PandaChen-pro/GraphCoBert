@@ -8,3 +8,34 @@
 {"time":"2025-06-24T11:31:23.564024563Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
 {"time":"2025-06-24T11:31:39.516728964Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": EOF"}
 {"time":"2025-06-24T11:31:39.516798728Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:09:38.657113766Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:10:23.697104873Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:10:23.697139031Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:12:24.427698989Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:12:24.427760271Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:35:42.857666345Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:36:24.334811296Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:37:42.685522185Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:37:42.685598934Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:41:43.082196353Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:41:43.082800605Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T14:49:12.594978607Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T14:49:12.595021643Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T16:01:56.716994554Z","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-06-24T16:03:02.482184025Z","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-06-24T16:51:09.772397479Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T16:51:09.77244866Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T16:51:16.910847919Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/laccoliths/graphcodebert-clonedetection/ykzkk1pj/file_stream\": EOF"}
+{"time":"2025-06-24T16:51:17.300693294Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": EOF"}
+{"time":"2025-06-24T17:34:55.61498192Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-24T20:43:30.75402419Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-06-25T06:11:57.626568863Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": unexpected EOF"}
+{"time":"2025-06-25T06:39:46.489057887Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-25T06:39:46.489198213Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-25T06:39:47.453467982Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.650333157},{"desc":"uploading wandb-summary.json","runtime_seconds":0.650297341},{"desc":"uploading config.yaml","runtime_seconds":0.333126216}],"total_operations":3}}
+{"time":"2025-06-25T06:39:49.137691119Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-25T06:39:49.753518352Z","level":"INFO","msg":"stream: closing","id":"ykzkk1pj"}
+{"time":"2025-06-25T06:39:49.753551675Z","level":"INFO","msg":"handler: closed","stream_id":"ykzkk1pj"}
+{"time":"2025-06-25T06:39:49.753570405Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ykzkk1pj"}
+{"time":"2025-06-25T06:39:49.753597701Z","level":"INFO","msg":"sender: closed","stream_id":"ykzkk1pj"}
+{"time":"2025-06-25T06:39:49.773992917Z","level":"INFO","msg":"stream: closed","id":"ykzkk1pj"}

@@ -1,3 +1,9 @@
 /output/
 /__pycache__/
 /saved_models/
+/notes/
+augment.vscode-augment-0.486.0-patched.vsix
+wandb_integration_guide.md
+wandb_integration_summary.md
+README.md
+/wandb/
